@@ -49,6 +49,7 @@ const goalMomentBtn = document.getElementById('goalMomentBtn');
 const betweenHalvesBtn = document.getElementById('betweenHalvesBtn');
 const varBtn = document.getElementById('varBtn');
 const recBtn = document.getElementById('recBtn');
+const clearEventsBtn = document.getElementById('clearEventsBtn');
 
 let vmixDoc = null;
 let pollTimer = null;
@@ -106,6 +107,7 @@ const BIG_SCOREBOARD_INPUT_NUMBER = '5';
 const LOWER_TAB_OVERLAY_INDEX = 4;
 const REPLAY_INPUT_NUMBER = '8';
 const REPLAY_CHANNEL = '1';
+const REPLAY_DELETE_LOOP_LIMIT = 50;
 // Сопоставление изображений фолов: {home: {1: index, 2: index...}, away: {...}}
 scoreboard.foulImages = {home: {}, away: {}};
 scoreboard.homeFoulsField = null;
@@ -1019,8 +1021,50 @@ function attachReplayControls(){
   if(recBtn) recBtn.addEventListener('click', ()=> toggleReplayRecording());
 }
 
+// Очистить все события в листе 1 (select list 1 -> select all -> delete selected)
+async function deleteSelectedEventsLoop(channel){
+  let deletedCount = 0;
+  let lastError = null;
+  for(let i = 0; i < REPLAY_DELETE_LOOP_LIMIT; i++){
+    try{
+      await sendCommandParts([`Function=ReplayDeleteSelectedEvent`, `Channel=${encodeURIComponent(channel)}`]);
+      deletedCount++;
+    }catch(err){
+      lastError = err;
+      break;
+    }
+  }
+  return {deletedCount, lastError};
+}
+
+async function clearAllEventsList1(){
+  if(!clearEventsBtn) return;
+  clearEventsBtn.disabled = true;
+  try{
+    if(logEl) logEl.textContent = 'Удаление: выбираем лист 1';
+    await sendCommandParts([`Function=ReplaySelectEvents1`, `Channel=${encodeURIComponent(REPLAY_CHANNEL)}`]);
+    await sendCommandParts([`Function=ReplaySelectAllEvents`]);
+    const {deletedCount, lastError} = await deleteSelectedEventsLoop(REPLAY_CHANNEL);
+    if(lastError && deletedCount === 0) throw lastError;
+    if(logEl){
+      if(deletedCount > 0) logEl.textContent = `Удаление: ${deletedCount} событий в листе 1 удалено`;
+      else logEl.textContent = 'Удаление: лист 1 пуст или событий нет';
+    }
+  }catch(e){
+    if(logEl) logEl.textContent = 'Удаление: ошибка при очистке листа 1';
+  }finally{
+    clearEventsBtn.disabled = false;
+  }
+}
+
 function attachAfterMatchControls(){
   if(betweenHalvesBtn) betweenHalvesBtn.addEventListener('click', ()=> playBetweenHalvesReplays());
+  if(clearEventsBtn) clearEventsBtn.addEventListener('click', ()=>{
+    try{
+      if(confirm && !confirm('Удалить все события в листе 1?')) return;
+    }catch(e){ /* ignore if confirm unavailable */ }
+    clearAllEventsList1();
+  });
 }
 
 function changeHomeScore(delta){
