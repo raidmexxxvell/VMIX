@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>vMix Контрол — Минималист</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- SVG sprite with minimal icons -->
+    <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="icon-refresh" viewBox="0 0 24 24"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4 7.59 4 4 7.59 4 12h2.5l-3.5 3.5L.5 12H3c0-4.97 4.03-9 9-9 2.76 0 5.26 1.12 7.07 2.93L17.65 6.35zM21.5 11H19c0 4.41-3.59 8-8 8-2.21 0-4.2-.9-5.65-2.35L6.34 15.3C7.92 16.88 9.88 18 12 18c4.41 0 8-3.59 8-8h1.5L21.5 11z"/></symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h4V5H6v14zM14 5v14h4V5h-4z"/></symbol>
+      <symbol id="icon-stop" viewBox="0 0 24 24"><path fill="currentColor" d="M6 6h12v12H6z"/></symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></symbol>
+      <symbol id="icon-minus" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></symbol>
+      <symbol id="icon-eye" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6a9.77 9.77 0 0 0-9 6 9.77 9.77 0 0 0 9 6 9.77 9.77 0 0 0 9-6 9.77 9.77 0 0 0-9-6zm0 10a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></symbol>
+      <symbol id="icon-eye-off" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6c2.5 0 4.71 1.28 6.16 3.22L21 6l1 1-2.5 2.5A9.77 9.77 0 0 1 12 18a9.77 9.77 0 0 1-9-6 9.77 9.77 0 0 1 4.24-4.24L3 6 4 5l2.16 2.16A9.77 9.77 0 0 1 12 6zM2 2l20 20-1.5 1.5L.5 3.5 2 2z"/></symbol>
+      <symbol id="icon-text" viewBox="0 0 24 24"><path fill="currentColor" d="M5 4v3h5.5v12h3V7H19V4z"/></symbol>
+      <symbol id="icon-image" viewBox="0 0 24 24"><path fill="currentColor" d="M21 19V5a2 2 0 0 0-2-2H5C3.9 3 3 3.9 3 5v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3L14.5 11l4.5 6H5l3.5-3.5z"/></symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
+    </svg>
+  </head>
+  <body>
+    <div class="container">
+      <header class="top">
+        <div class="brand-stream">
+          <div class="brand-title">
+            <div class="stream-indicator" id="streamIndicator" title="Состояние трансляции">
+              <span class="stream-dot"></span>
+              <span class="stream-status" id="streamIndicatorStatus">Офлайн</span>
+            </div>
+            <h1>vMix Контрол</h1>
+          </div>
+          <div class="streaming-controls">
+            <div class="stream-key-display" id="streamKeyDisplay" title="Ключ стрима">Ключ: не задан</div>
+            <div class="stream-buttons">
+              <button class="btn stream-btn" id="streamStartBtn" title="Запустить трансляцию"><svg><use href="#icon-play"></use></svg><span>Старт</span></button>
+              <button class="btn stream-btn" id="streamStopBtn" title="Остановить трансляцию" disabled><svg><use href="#icon-stop"></use></svg><span>Стоп</span></button>
+              <button class="icon-btn small edit-btn" id="streamKeyEditBtn" title="Редактировать ключ стрима">✎</button>
+            </div>
+          </div>
+        </div>
+        <div class="controls-row">
+            <select id="inputSelect" class="select"></select>
+            <button id="btnRefresh" class="icon-btn" title="Обновить список"> <svg><use href="#icon-refresh"></use></svg> </button>
+            <label class="muted"><input type="checkbox" id="autoPoll"> Автообновление</label>
+          </div>
+        </header>
+
+      <main class="main">
+        <section class="panel" id="panelFields">
+          <div class="scoreboard-hero">
+            <h2>Табло (Футбол)</h2>
+          </div>
+          <div id="scoreboard" class="scoreboard">
+            <div class="team team-home">
+              <div class="team-name" id="homeName">
+                <span id="homeNameText" class="team-name-text">Дом</span>
+                <button class="icon-btn small edit-btn" id="homeEditBtn" title="Редактировать название">✎</button>
+                <button class="color-btn" id="homeColorBtn" title="Выбрать цвет команды Дом"></button>
+                <input type="color" id="homeColorInput" class="color-input" aria-hidden="true" />
+                <button class="btn color-apply" id="homeColorApply">Применить</button>
+              </div>
+              <div class="score-row">
+                <button class="btn big" id="homeMinus"><svg><use href="#icon-minus"></use></svg></button>
+                <div class="score" id="homeScore">0</div>
+                <button class="btn big" id="homePlus"><svg><use href="#icon-plus"></use></svg></button>
+              </div>
+            </div>
+            <div class="vs">
+              <div class="vs-controls">
+                <button class="btn small" id="resetScore">Сбросить счёт</button>
+                <button id="centerTabBtn" class="btn center-tab-btn">ТАБЛО</button>
+              </div>
+              <div class="vs-dash">—</div>
+            </div>
+            <div class="team team-away">
+              <div class="team-name" id="awayName">
+                <span id="awayNameText" class="team-name-text">Гости</span>
+                <button class="icon-btn small edit-btn" id="awayEditBtn" title="Редактировать название">✎</button>
+                <button class="color-btn" id="awayColorBtn" title="Выбрать цвет команды Гости"></button>
+                <input type="color" id="awayColorInput" class="color-input" aria-hidden="true" />
+                <button class="btn color-apply" id="awayColorApply">Применить</button>
+              </div>
+              <div class="score-row">
+                <button class="btn big" id="awayMinus"><svg><use href="#icon-minus"></use></svg></button>
+                <div class="score" id="awayScore">0</div>
+                <button class="btn big" id="awayPlus"><svg><use href="#icon-plus"></use></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="scoreboard-meta">
+            <label class="half-control" for="halfSelect">
+              Тайм
+              <select id="halfSelect" class="select slim">
+                <option value="1Т">1Т</option>
+                <option value="2Т">2Т</option>
+              </select>
+            </label>
+          </div>
+          <div id="scoreExtras" class="score-extras">
+            <div class="fouls">
+              <div class="score-extras-title">Фолы</div>
+              <div class="foul-row">
+                <div class="foul-column">
+                  <div class="foul-label">Дом</div>
+                  <div class="foul-value" id="homeFouls">0</div>
+                  <div class="foul-controls">
+                    <button class="btn" id="homeFoulMinus">-</button>
+                    <button class="btn" id="homeFoulPlus">+</button>
+                  </div>
+                </div>
+
+                <div class="timer timer-inline" aria-label="Таймер матча">
+                  <div class="timer-label" style="text-align:center">Таймер</div>
+                  <div class="timer-display">
+                    <div id="matchTimer">00:00:00</div>
+                  </div>
+                  <div class="timer-controls">
+                    <button class="btn icon-control" id="timerStart" title="Start"><svg><use href="#icon-play"></use></svg></button>
+                    <button class="btn icon-control" id="timerStop" title="Stop"><svg><use href="#icon-stop"></use></svg></button>
+                    <button class="btn icon-control" id="timerReset" title="Reset"><svg><use href="#icon-refresh"></use></svg></button>
+                  </div>
+                </div>
+
+                <div class="foul-column">
+                  <div class="foul-label">Гости</div>
+                  <div class="foul-value" id="awayFouls">0</div>
+                  <div class="foul-controls">
+                    <button class="btn" id="awayFoulMinus">-</button>
+                    <button class="btn" id="awayFoulPlus">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="replay-block">
+            <div class="replay-block-header">
+              <div>
+                <h3>ПОВТОР УПРАВЛЕНИЕ</h3>
+              </div>
+              <div class="replay-actions">
+                <button class="btn" id="replayMarkBtn">МОМЕНТ</button>
+                <!-- Функция фола удалена: кнопка удалена по запросу -->
+                <button class="btn" id="goalMomentBtn">ГОЛ</button>
+                <button class="btn" id="varBtn">VAR</button>
+                <button class="btn rec" id="recBtn" title="REC">REC</button>
+              </div>
+            </div>
+          </div>
+          <div class="replay-block after-match-block">
+            <div class="replay-block-header">
+              <div>
+                <h3>УПРАВЛЕНИЕ ПОСЛЕ МАТЧА</h3>
+              </div>
+              <div class="replay-actions">
+                <button class="btn" id="betweenHalvesBtn">ПОВТОРЫ МЕЖДУ ТАЙМАМИ</button>
+              </div>
+            </div>
+          </div>
+          <div id="fieldsList" class="fields-list" style="display:none">Загрузите XML (кнопка обновления)</div>
+        </section>
+
+        <aside class="panel small" id="panelActions">
+          <h2>Действия</h2>
+          <div class="actions">
+              <!-- Play/Pause/Stop buttons removed (not needed) -->
+            <div class="action-row">
+              <button id="cutBtn" class="btn">Cut</button>
+              <button id="fadeBtn" class="btn">Fade</button>
+            </div>
+            <div class="log" id="log">Статус: ожидание</div>
+            <hr class="sep">
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <button id="lowerTabBtn" class="btn">НИЖТАБ</button>
+              <button id="penaltyBtn" class="btn">ПЕНАЛЬТИ</button>
+              <button id="bigTabBtn" class="btn">БОЛТАБ</button>
+              <button id="mainBtn" class="btn">ГЛАВНАЯ</button>
+            </div>
+            <!-- Контейнер для динамически перемещаемых кнопок (в landscape на мобиле) -->
+            <div id="movedReplayActions" class="moved-replay-actions" aria-hidden="true"></div>
+          </div>
+        </aside>
+      </main>
+
+      
+    </div>
+
+    <button id="mobileMenuToggle" class="mobile-menu-toggle" title="Меню" style="display:none">
+      <svg><use href="#icon-menu"></use></svg>
+    </button>
+
+    <script src="app.js" defer></script>
+  </body>
+  </html>

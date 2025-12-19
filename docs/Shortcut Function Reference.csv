@@ -1,0 +1,495 @@
+﻿Name,Description,Parameters
+General,Category Header (not a function),
+ActivatorRefresh,Refresh all activator device lights and controls,None
+CallManagerShowHide,,None
+KeyPress,,Value = Key Value
+SendKeys,Send keys to active window,Value = Keys Value
+SetDynamicValue1,Set Dynamic Value to use when specifying Dynamic1 as a shortcut value.,Value = Value Value
+SetDynamicValue2,Set Dynamic Value to use when specifying Dynamic2 as a shortcut value.,Value = Value Value
+SetDynamicValue3,Set Dynamic Value to use when specifying Dynamic3 as a shortcut value.,Value = Value Value
+SetDynamicValue4,Set Dynamic Value to use when specifying Dynamic4 as a shortcut value.,Value = Value Value
+Audio,Category Header (not a function),
+Audio,Toggle Audio Mute On/Off,Input
+AudioAuto,,Input
+AudioAutoOff,,Input
+AudioAutoOn,,Input
+AudioBus,"M,A,B,C,D,E,F,G","Value = Bus Value,Input"
+AudioBusOff,"M,A,B,C,D,E,F,G","Value = Bus Value,Input"
+AudioBusOn,"M,A,B,C,D,E,F,G","Value = Bus Value,Input"
+AudioChannelMatrixApplyPreset,Apply preset to channel matrix,"Value = Preset Name Value,Input"
+AudioMixerShowHide,,None
+AudioOff,,Input
+AudioOn,,Input
+AudioPluginOff,"Turn off Audio Plugin, starting from 1","Value = Plugin Number Value,Input"
+AudioPluginOn,"Turn on Audio Plugin, starting from 1","Value = Plugin Number Value,Input"
+AudioPluginOnOff,"Toggle on/off Audio Plugin, starting from 1","Value = Plugin Number Value,Input"
+AudioPluginShow,"Show Audio Plugin Editor, starting from 1","Value = Plugin Number Value,Input"
+BusAAudio,,None
+BusAAudioOff,,None
+BusAAudioOn,,None
+BusAAudioPluginOff,"Turn off Audio Plugin, starting from 1",Value = Plugin Number Value
+BusAAudioPluginOn,"Turn on Audio Plugin, starting from 1",Value = Plugin Number Value
+BusAAudioPluginOnOff,"Toggle on/off Audio Plugin, starting from 1",Value = Plugin Number Value
+BusAAudioPluginShow,"Show Audio Plugin Editor, starting from 1",Value = Plugin Number Value
+BusBAudio,,None
+BusBAudioOff,,None
+BusBAudioOn,,None
+BusBAudioPluginOff,"Turn off Audio Plugin, starting from 1",Value = Plugin Number Value
+BusBAudioPluginOn,"Turn on Audio Plugin, starting from 1",Value = Plugin Number Value
+BusBAudioPluginOnOff,"Toggle on/off Audio Plugin, starting from 1",Value = Plugin Number Value
+BusBAudioPluginShow,"Show Audio Plugin Editor, starting from 1",Value = Plugin Number Value
+BusXAudio,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXAudioOff,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXAudioOn,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXAudioPluginOff,"Turn off Audio Plugin, starting from 1","Value = Bus,PluginNumber Value"
+BusXAudioPluginOn,"Turn on Audio Plugin, starting from 1","Value = Bus,PluginNumber Value"
+BusXAudioPluginOnOff,"Toggle on/off Audio Plugin, starting from 1","Value = Bus,PluginNumber Value"
+BusXAudioPluginShow,"Show Audio Plugin Editor, starting from 1","Value = Bus,PluginNumber Value"
+BusXSendToMaster,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXSendToMasterOff,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXSendToMasterOn,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXSolo,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXSoloOff,"M,A,B,C,D,E,F,G",Value = Bus Value
+BusXSoloOn,"M,A,B,C,D,E,F,G",Value = Bus Value
+MasterAudio,,None
+MasterAudioOff,,None
+MasterAudioOn,,None
+MasterAudioPluginOff,"Turn off Audio Plugin, starting from 1",Value = Plugin Number Value
+MasterAudioPluginOn,"Turn on Audio Plugin, starting from 1",Value = Plugin Number Value
+MasterAudioPluginOnOff,"Toggle on/off Audio Plugin, starting from 1",Value = Plugin Number Value
+MasterAudioPluginShow,"Show Audio Plugin Editor, starting from 1",Value = Plugin Number Value
+SetBalance,Value = Balance -1-1,"Value,Input"
+SetBusAVolume,Value = Volume 0-100,Value
+SetBusBVolume,Value = Volume 0-100,Value
+SetBusCVolume,Value = Volume 0-100,Value
+SetBusDVolume,Value = Volume 0-100,Value
+SetBusEVolume,Value = Volume 0-100,Value
+SetBusFVolume,Value = Volume 0-100,Value
+SetBusGVolume,Value = Volume 0-100,Value
+SetGain,Value = Gain dB 0-24,"Value,Input"
+SetGainChannel1,Value = Gain dB 0-24,"Value,Input"
+SetGainChannel2,Value = Gain dB 0-24,"Value,Input"
+SetHeadphonesVolume,Value = Volume 0-100,Value
+SetMasterVolume,Value = Volume 0-100,Value
+SetVolume,Value = Volume 0-100,"Value,Input"
+SetVolumeChannel1,"When using SeparateMono on an Audio Input, this can be used to set channel volumes independently.","Value = Volume 0-100 Value,Input"
+SetVolumeChannel2,"When using SeparateMono on an Audio Input, this can be used to set channel volumes independently.","Value = Volume 0-100 Value,Input"
+SetVolumeChannelMixer,Set Volume of an Input's sub channel (1 to 16),"Value = Channel,Volume 0-100 Value,Input"
+SetVolumeFade,Set volume gradually over x milliseconds.,"Value = Volume 0-100,Milliseconds Value,Input"
+Solo,,Input
+SoloOff,,Input
+SoloOn,,Input
+Transition,Category Header (not a function),
+CutDirect,Cuts the input directly to Output without changing Preview,Input
+FadeToBlack,Toggle FTB On/Off,None
+QuickPlay,,Input
+SetFader,"Set Master Fader T-Bar, 255 will cut to Preview",Value = Fader 0-255 Value
+SetTransitionDuration1,Change Transition Duration for Button 1,Value = Duration MS Value
+SetTransitionDuration2,Change Transition Duration for Button 2,Value = Duration MS Value
+SetTransitionDuration3,Change Transition Duration for Button 3,Value = Duration MS Value
+SetTransitionDuration4,Change Transition Duration for Button 4,Value = Duration MS Value
+SetTransitionEffect1,Change Transition for Button 1,Value = Transition Value
+SetTransitionEffect2,Change Transition for Button 2,Value = Transition Value
+SetTransitionEffect3,Change Transition for Button 3,Value = Transition Value
+SetTransitionEffect4,Change Transition for Button 4,Value = Transition Value
+Stinger1,,Input
+Stinger2,,Input
+Stinger3,,Input
+Stinger4,,Input
+Transition1,Clicks one of the four Transition buttons in the main vMix window.,None
+Transition2,,None
+Transition3,,None
+Transition4,,None
+Output,Category Header (not a function),
+Fullscreen,Toggles Fullscreen On or Off,None
+FullscreenOff,,None
+FullscreenOn,,None
+SetOutput2,Change what is displayed on Output 2.,"Output,Preview,MultiView,Input Value = Output, Preview, MultiView, Input Value,Input"
+SetOutput3,Change what is displayed on Output 3.,"Output,Preview,MultiView,Input Value = Output, Preview, MultiView, Input Value,Input"
+SetOutput4,Change what is displayed on Output 4.,"Output,Preview,MultiView,Input Value = Output, Preview, MultiView, Input Value,Input"
+SetOutputExternal2,Change what is displayed on the External2 output.,"Output,Preview,MultiView,Input Value = Output, Preview, MultiView, Input Value,Input"
+SetOutputFullscreen,Change what is displayed on the Fullscreen output.,"Output,Preview,MultiView,Input Value = Output, Preview, MultiView, Input Value,Input"
+SetOutputFullscreen2,Change what is displayed on the Fullscreen2 output.,"Output,Preview,MultiView,Input Value = Output, Preview, MultiView, Input Value,Input"
+Snapshot,"Create a snapshot image of the current Output. Optional Value specifies save Filename, otherwise a save file window will appear. Filename can specify date, for example mysnapshot {0:dd MMM yyyy}.jpg",Value = Value Value
+SnapshotInput,"Create a snapshot image of the selected Input. Optional Value specifies save Filename, otherwise a save file window will appear. Filename can specify date, for example mysnapshot {0:dd MMM yyyy}.jpg","Value = Value Value,Input"
+StartExternal,,None
+StartMultiCorder,,None
+StartRecording,,None
+StartSRTOutput,Optional output number starting from 0. Leave blank to control Output 1 only.,Value = Output Value
+StartStopExternal,,None
+StartStopMultiCorder,,None
+StartStopRecording,,None
+StartStopSRTOutput,Optional output number starting from 0. Leave blank to control Output 1 only.,Value = Output Value
+StartStopStreaming,Optional stream number starting from 0. Leave blank to control all streams.,Value = Stream Value
+StartStreaming,Optional stream number starting from 0. Leave blank to control all streams.,Value = Stream Value
+StopExternal,,None
+StopMultiCorder,,None
+StopRecording,,None
+StopSRTOutput,Optional output number starting from 0. Leave blank to control Output 1 only.,Value = Output Value
+StopStreaming,Optional stream number starting from 0. Leave blank to control all streams.,Value = Stream Value
+StreamingSetKey,"Set Key on Custom RTMP Stream. Optional stream number starting from 0 at start followed by comma, e.g 0,mystreamkey",Value = Stream Value
+StreamingSetPassword,"Set Password on Custom RTMP Stream. Optional stream number starting from 0 at start followed by comma, e.g 0,password",Value = Stream Value
+StreamingSetURL,"Set URL on Custom RTMP Stream. Optional stream number starting from 0 at start followed by comma, e.g 0,rtmp://myurl/",Value = Stream Value
+StreamingSetUsername,"Set Username on Custom RTMP Stream. Optional stream number starting from 0 at start followed by comma, e.g 0,username",Value = Stream Value
+WriteDurationToRecordingLog,Write current recording duration to log file with optional tag text Value.,Value = Tag Text Value
+Title,Category Header (not a function),
+AdjustCountdown,Seconds to add or subtract from current Countdown time,"Value = Seconds Value,Input"
+ChangeCountdown,Change countdown time according to Value as hh:mm:ss (00:00:00),"Value = Time 00:00:00 Value,Input"
+NextTitlePreset,,Input
+PauseCountdown,"Pause or Resume Countdown or if complete, Start from beginning.",Input
+PauseRender,Freeze Title Input while making multiple updates,Input
+PreviousTitlePreset,,Input
+ResumeRender,Resume Title Input rendering after making multiple updates,Input
+SelectTitlePreset,Value = Preset Index,"Value,Input"
+SetCountdown,Set countdown duration according to Value as hh:mm:ss (00:00:00),"Value = Duration 00:00:00 Value,Input"
+SetImage,Change Image in Title according to Filename or empty to clear. SelectedIndex or SelectedValue can be used to select image.,"Value = Filename Value,Input"
+SetImageVisible,Toggle Image Visibility in Title SelectedIndex or SelectedValue can be used to select image.,Input
+SetImageVisibleOff,Hide Image in Title SelectedIndex or SelectedValue can be used to select image.,Input
+SetImageVisibleOn,Show Image in Title SelectedIndex or SelectedValue can be used to select image.,Input
+SetText,Change Text in Title according to Value parameter. SelectedIndex or SelectedName can be used to select Text Field,"Value = Text Value,Input"
+SetTextColour,Change Colour of Text in Title in HTML format (#xxxxxx),"Value = Colour Value,Input"
+SetTextVisible,Toggle Text Visibility in Title SelectedIndex or SelectedValue can be used to select text field.,Input
+SetTextVisibleOff,Hide Text in Title SelectedIndex or SelectedValue can be used to select text field.,Input
+SetTextVisibleOn,Show Text in Title SelectedIndex or SelectedValue can be used to select text field.,Input
+SetTickerSpeed,Change Ticker Speed. SelectedIndex or SelectedValue can be used to select ticker field.,"Value = Speed 0-1000 Value,Input"
+StartCountdown,,Input
+StopCountdown,Stop and Reset Countdown,Input
+SuspendCountdown,Pause Countdown Only,Input
+TitleBeginAnimation,Value = Animation,"Value,Input"
+Input,Category Header (not a function),
+ActiveInput,Send to Output the selected Input,Input
+AddInput,Create a new Input based on information provided in Value. Video|c:\path\to\video.avi Image|c:\path\to\image.jpg Photos|c:\path\to\folder Title|c:\path\to\title.gtzip VideoList|c:\path\to\playlist.m3u Colour|HTMLColor AudioFile|c:\path\to\audio.wav Flash|c:\path\to\flash.swf PowerPoint|c:\path\to\powerpoint.pptx,Value = Type|Filename Value
+AutoPauseOff,,Input
+AutoPauseOn,,Input
+AutoPlayFirst,Toggle automatically playing first item in a List with Transition,Input
+AutoPlayFirstOff,Turn Off automatically playing first item in a List with Transition,Input
+AutoPlayFirstOn,Turn On automatically playing first item in a List with Transition,Input
+AutoPlayNext,Toggle automatically playing next item in a List,Input
+AutoPlayNextOff,Turn Off automatically playing next item in a List,Input
+AutoPlayNextOn,Turn On automatically playing next item in a List,Input
+AutoPlayOff,,Input
+AutoPlayOn,,Input
+AutoRestartOff,,Input
+AutoRestartOn,,Input
+ColourCorrectionAuto,Basic Auto Colour Correction.,Input
+ColourCorrectionReset,Reset Colour Correction to Default Values.,Input
+CreateVirtualInput,Create a new Virtual Input from the specified Input.,Input
+DeinterlaceOff,,Input
+DeinterlaceOn,,Input
+InputPreviewHide,Hides large preview of input,Input
+InputPreviewShow,Shows large preview of input,Input
+InputPreviewShowHide,Toggles large preview of input,Input
+LayerOff,Turn Off Layer For Input At Index (starting from 1),"Value = Index Value,Input"
+LayerOn,Turn On Layer For Input At Index (starting from 1),"Value = Index Value,Input"
+LayerOnOff,Toggle On/Off Layer For Input At Index (starting from 1),"Value = Index Value,Input"
+ListAdd,Add Filename to List,"Value = Filename Value,Input"
+ListExport,Export List as M3U to Filename,"Value = Filename Value,Input"
+ListPlayOut,,Input
+ListRemove,Remove from List by Index starting from 1,"Value = Index Value,Input"
+ListRemoveAll,Remove all items from List,Input
+ListShowHide,,Input
+ListShuffle,Shuffle (randomize) List,Input
+LivePlayPause,,Input
+LoopOff,,Input
+LoopOn,,Input
+MarkIn,,Input
+MarkOut,,Input
+MarkReset,,Input
+MarkResetIn,,Input
+MarkResetOut,,Input
+MirrorOff,,Input
+MirrorOn,,Input
+MoveInput,Value = Number,"Value,Input"
+MoveLayer,"Move Layer in Input according to Value parameter. Example: 1,2 moves Layer1 to Layer2","Value = FromIndex,ToIndex Value,Input"
+NextItem,Move to next item in List,Input
+NextPicture,Move to Next Picture for Photo and PowerPoint Inputs,Input
+Pause,,Input
+Play,,Input
+PlayPause,,Input
+PreviewInput,Send to Preview the selected Input,Input
+PreviewInputNext,Send to Preview the next Input,None
+PreviewInputPrevious,Send to Preview the previous Input,None
+PreviousItem,Move to previous item in List,Input
+PreviousPicture,Move to Previous Picture for Photo and PowerPoint Inputs,Input
+RemoveInput,,Input
+ResetInput,,Input
+Restart,Restart selected Input,Input
+SaveVideoDelay,Save video clip from Video Delay according to Duration in milliseconds,"Input,Duration"
+SelectCategory,"Change to Category according to Value (All,Red,Green,Orange,Purple,Aqua,Blue,Search)",Value = Category Value
+SelectIndex,"Photos,List: Selects item in List according to Value starting from number 1 Virtual Set: Zooms to selected preset using the current speed settings","Value = Index Value,Input"
+SetAlpha,"Set Input transparency according to Value. 0 is transparent, 255 is opaque","Value = Alpha 0-255 Value,Input"
+SetCCGainB,Change Gain R level of Input. 1=Original,"Value = Value 0-2 Value,Input"
+SetCCGainG,Change Gain R level of Input. 1=Original,"Value = Value 0-2 Value,Input"
+SetCCGainR,Change Gain R level of Input. 1=Original,"Value = Value 0-2 Value,Input"
+SetCCGainRGB,Change Gain RGB level of Input. 1=Original,"Value = Value 0-2 Value,Input"
+SetCCGammaB,Change Gamma B level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCGammaG,Change Gamma G level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCGammaR,Change Gamma R level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCGammaRGB,Change Gamma RGB level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCHue,Change Hue level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCLiftB,Change Lift B level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCLiftG,Change Lift G level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCLiftR,Change Lift R level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCLiftRGB,Change Lift RGB level of Input. 0=Original,"Value = Value -1-1 Value,Input"
+SetCCSaturation,"Change Saturation level of Input. 0=Original, -1=Greyscale","Value = Value -1-1 Value,Input"
+SetDynamicInput1,Set Dynamic Input from Input Name or Number,Value = Input Value
+SetDynamicInput2,Set Dynamic Input from Input Name or Number,Value = Input Value
+SetDynamicInput3,Set Dynamic Input from Input Name or Number,Value = Input Value
+SetDynamicInput4,Set Dynamic Input from Input Name or Number,Value = Input Value
+SetInputName,Set the Display Name of the Input,"Value = Name Value,Input"
+SetLayer,"Change Layer in Input according to Value parameter. Example: 1,2 changes Layer1 to Input2","Value = Index,Input Value,Input"
+SetPanX,"Change current PanX value of Input. 0=centered, -2=100% to left, 2=100% to right","Value = Value -2-2 Value,Input"
+SetPanY,"Change current PanY value of Input. 0=centered, -2=100% to bottom, 2=100% to top","Value = Value -2-2 Value,Input"
+SetPictureEffect,"Set transition effect for Photos and PowerPoint Inputs (Fade, Zoom, etc)","Value = Transition Value,Input"
+SetPictureEffectDuration,Set duration of transition effect in Milliseconds,"Value = Duration MS Value,Input"
+SetPictureTransition,Set transition time between Photos and PowerPoint slides in Seconds,"Value = Seconds Value,Input"
+SetPosition,Set Position of selected Input according to Value in Milliseconds,"Value = Milliseconds Value,Input"
+SetRate,"Set Playback speed/rate for Videos and Video Delays 0.5=50%,1=100%,2=200% etc","Value = Speed 0.1-4 Value,Input"
+SetRateSlowMotion,"Set Slow Motion speed for Instant Replay 0.5=50%,1=100% etc","Value = Speed 0-1 Value,Input"
+SetZoom,"Change current Zoom level of Input. 1=100%, 0.5=50%, 2=200%","Value = Value 0-5 Value,Input"
+SharpenOff,,Input
+SharpenOn,,Input
+VideoCallAudioSource,"Master,Headphones,BusA,BusB,BusC,BusD,BusE,BusF,BusG","Value = Source Value,Input"
+VideoCallVideoSource,"Output1,Output2,Output3,Output4","Value = Source Value,Input"
+VideoDelayStartRecording,Start Video Delay Recording,"Input,Duration"
+VideoDelayStartStopRecording,Toggle Video Delay Recording,"Input,Duration"
+VideoDelayStopRecording,Stop Video Delay Recording,"Input,Duration"
+WaitForCompletion,Wait for a Video Input to reach the end of playback.,"Input,Duration"
+Overlay,Category Header (not a function),
+MoveMultiViewOverlay,"Move Overlay in Input MultiView according to Value parameter. Example: 1,2 moves Overlay1 to Overlay2","Value = FromIndex,ToIndex Value,Input"
+MultiViewOverlay,Toggle On/Off MultiView Overlay For Input At Index (starting from 1),"Value = Index Value,Input"
+MultiViewOverlayOff,Turn Off MultiView Overlay For Input At Index (starting from 1),"Value = Index Value,Input"
+MultiViewOverlayOn,Turn On MultiView Overlay For Input At Index (starting from 1),"Value = Index Value,Input"
+OverlayInput1,Toggle Overlay1 On/Off with selected Input using configured Transition,Input
+OverlayInput1In,Transition Out to Overlay1 with selected Input,Input
+OverlayInput1Off,Immediately switch Overlay1 Off (Cut),None
+OverlayInput1Out,Transition Out Overlay1,None
+OverlayInput1Zoom,Zooms PIP Overlay to fill Fullscreen and vice versa,None
+OverlayInput2,,Input
+OverlayInput2In,,Input
+OverlayInput2Off,,None
+OverlayInput2Out,,None
+OverlayInput2Zoom,,None
+OverlayInput3,,Input
+OverlayInput3In,,Input
+OverlayInput3Off,,None
+OverlayInput3Out,,None
+OverlayInput3Zoom,,None
+OverlayInput4,,Input
+OverlayInput4In,,Input
+OverlayInput4Off,,None
+OverlayInput4Out,,None
+OverlayInput4Zoom,,None
+OverlayInputAllOff,Immediately switch all Overlays Off,None
+PreviewOverlayInput1,Preview Overlay1 using the selected Input,Input
+PreviewOverlayInput2,,Input
+PreviewOverlayInput3,,Input
+PreviewOverlayInput4,,Input
+SetMultiViewOverlay,"Change Layer in Input MultiView according to Value parameter. Example: 1,2 changes Layer 1 to Input2","Value = Index,Input Value,Input"
+PlayList,Category Header (not a function),
+NextPlayListEntry,Move to Next Item in a running PlayList,None
+PreviousPlayListEntry,Move to Previous Item in a running PlayList,None
+SelectPlayList,Open PlayList with Name matching Value,Value = PlayList Value
+StartPlayList,,None
+StopPlayList,,None
+Scripting,Category Header (not a function),
+ScriptStart,Value = Script Name,Value
+ScriptStartDynamic,Start a dynamic script using code specified as the Value.,Value = Code Value
+ScriptStop,Value = Script Name,Value
+ScriptStopAll,,None
+ScriptStopDynamic,,None
+Replay,Category Header (not a function),
+ReplayACamera1,,None
+ReplayACamera2,,None
+ReplayACamera3,,None
+ReplayACamera4,,None
+ReplayACamera5,,None
+ReplayACamera6,,None
+ReplayACamera7,,None
+ReplayACamera8,,None
+ReplayBCamera1,,None
+ReplayBCamera2,,None
+ReplayBCamera3,,None
+ReplayBCamera4,,None
+ReplayBCamera5,,None
+ReplayBCamera6,,None
+ReplayBCamera7,,None
+ReplayBCamera8,,None
+ReplayCamera1,,None
+ReplayCamera2,,None
+ReplayCamera3,,None
+ReplayCamera4,,None
+ReplayCamera5,,None
+ReplayCamera6,,None
+ReplayCamera7,,None
+ReplayCamera8,,None
+ReplayChangeDirection,,Channel
+ReplayChangeSpeed,Value = Speed,"Value,Channel"
+ReplayCopyLastEvent,Value = Event List 0-19,Value
+ReplayCopySelectedEvent,Value = Event List 0-19,Value
+ReplayDeleteLastEvent,,Channel
+ReplayDeleteSelectedEvent,,Channel
+ReplayDuplicateLastEvent,,Channel
+ReplayDuplicateSelectedEvent,,Channel
+ReplayExportLastEvent,Value = Folder,"Value,Channel"
+ReplayFastBackward,1-30x,"Value = Speed Value,Channel"
+ReplayFastForward,1-30x,"Value = Speed Value,Channel"
+ReplayJumpFrames,Value = Frames,"Value,Channel"
+ReplayJumpFramesFastOff,ReplayJumpFrames jumps 1 frame for each value instead of 1 second.,Channel
+ReplayJumpFramesFastOn,ReplayJumpFrames jumps 1 second for each value instead of 1 frame.,Channel
+ReplayJumpToNow,,Channel
+ReplayLastEventCameraOff,Turns off the specified camera angle (1-8),Value = Camera Value
+ReplayLastEventCameraOn,Turns on the specified camera angle (1-8),Value = Camera Value
+ReplayLastEventSingleCameraOn,Turns on only the specified camera angle (1-8),Value = Camera Value
+ReplayLive,,None
+ReplayLiveToggle,,None
+ReplayMarkCancel,,None
+ReplayMarkIn,,None
+ReplayMarkInLive,,None
+ReplayMarkInOut,Number of previous seconds to use when creating a new event.,Value = Seconds Value
+ReplayMarkInOutLive,Number of previous seconds to use when creating a new event.,Value = Seconds Value
+ReplayMarkInOutRecorded,Number of previous seconds to use when creating a new event.,Value = Seconds Value
+ReplayMarkInRecorded,,None
+ReplayMarkInRecordedNow,,None
+ReplayMarkOut,,None
+ReplayMoveLastEvent,Value = Event List 0-19,Value
+ReplayMoveSelectedEvent,Value = Event List 0-19,Value
+ReplayMoveSelectedEventDown,,None
+ReplayMoveSelectedEventUp,,None
+ReplayMoveSelectedInPoint,Value = Frames,"Value,Channel"
+ReplayMoveSelectedOutPoint,Value = Frames,"Value,Channel"
+ReplayPause,,Channel
+ReplayPlay,,Channel
+ReplayPlayAllEvents,Play all Events in active list,Channel
+ReplayPlayAllEventsToOutput,Play all Events in active list,Channel
+ReplayPlayBackward,,Channel
+ReplayPlayEvent,Value = Event Number 0-1000,"Value,Channel"
+ReplayPlayEventsByID,Value = List of IDs,"Value,Channel"
+ReplayPlayEventsByIDToOutput,Value = List of IDs,"Value,Channel"
+ReplayPlayEventToOutput,Value = Event Number 0-1000,"Value,Channel"
+ReplayPlayForward,,Channel
+ReplayPlayLastEvent,,Channel
+ReplayPlayLastEventToOutput,,Channel
+ReplayPlayNext,,Channel
+ReplayPlayPause,,Channel
+ReplayPlayPrevious,,Channel
+ReplayPlaySelectedEvent,,Channel
+ReplayPlaySelectedEventToOutput,,Channel
+ReplayRecorded,,None
+ReplaySelectAllEvents,Select all events in active channel.,None
+ReplaySelectChannelA,,None
+ReplaySelectChannelAB,,None
+ReplaySelectChannelB,,None
+ReplaySelectedEventCameraOff,Turns off the specified camera angle (1-8),Value = Camera Value
+ReplaySelectedEventCameraOn,Turns on the specified camera angle (1-8),Value = Camera Value
+ReplaySelectedEventSingleCameraOn,Turns on only the specified camera angle (1-8),Value = Camera Value
+ReplaySelectEvents1,,Channel
+ReplaySelectEvents10,,Channel
+ReplaySelectEvents11,,Channel
+ReplaySelectEvents12,,Channel
+ReplaySelectEvents13,,Channel
+ReplaySelectEvents14,,Channel
+ReplaySelectEvents15,,Channel
+ReplaySelectEvents16,,Channel
+ReplaySelectEvents17,,Channel
+ReplaySelectEvents18,,Channel
+ReplaySelectEvents19,,Channel
+ReplaySelectEvents2,,Channel
+ReplaySelectEvents20,,Channel
+ReplaySelectEvents3,,Channel
+ReplaySelectEvents4,,Channel
+ReplaySelectEvents5,,Channel
+ReplaySelectEvents6,,Channel
+ReplaySelectEvents7,,Channel
+ReplaySelectEvents8,,Channel
+ReplaySelectEvents9,,Channel
+ReplaySelectFirstEvent,,Channel
+ReplaySelectLastEvent,,Channel
+ReplaySelectNextEvent,,Channel
+ReplaySelectPreviousEvent,,Channel
+ReplaySetAudioSource,Name as per dropdown box. e.g 'Camera1',Value = AudioSource Value
+ReplaySetDirectionBackward,,Channel
+ReplaySetDirectionForward,,Channel
+ReplaySetLastEventText,Value = Text,Value
+ReplaySetLastEventTextCamera,"Changes the text of the specified angle (1-4), example: 3,angle3text","Value = Camera,Text Value"
+ReplaySetSelectedEventText,Value = Text,Value
+ReplaySetSelectedEventTextCamera,"Changes the text of the specified angle (1-4), example: 3,angle3text","Value = Camera,Text Value"
+ReplaySetSpeed,See SetRateSlowMotion,"Value = Speed 0-1 Value,Channel"
+ReplayShowHide,,None
+ReplayStartRecording,,None
+ReplayStartStopRecording,,None
+ReplayStopEvents,,Channel
+ReplayStopRecording,,None
+ReplaySwapChannels,"Swap A to B and vice versa, includes angles and playback status.",None
+ReplayToggleLastEventCamera1,,None
+ReplayToggleLastEventCamera2,,None
+ReplayToggleLastEventCamera3,,None
+ReplayToggleLastEventCamera4,,None
+ReplayToggleLastEventCamera5,,None
+ReplayToggleLastEventCamera6,,None
+ReplayToggleLastEventCamera7,,None
+ReplayToggleLastEventCamera8,,None
+ReplayToggleSelectedEventCamera1,,None
+ReplayToggleSelectedEventCamera2,,None
+ReplayToggleSelectedEventCamera3,,None
+ReplayToggleSelectedEventCamera4,,None
+ReplayToggleSelectedEventCamera5,,None
+ReplayToggleSelectedEventCamera6,,None
+ReplayToggleSelectedEventCamera7,,None
+ReplayToggleSelectedEventCamera8,,None
+ReplayUpdateSelectedInPoint,Update In point of Selected Event to current Position.,Channel
+ReplayUpdateSelectedOutPoint,Update Mark Out point of Selected Event to current Position.,Channel
+ReplayUpdateSelectedSpeed,Update Selected Event to use Current Speed.,Channel
+ReplayUpdateSelectedSpeedDefault,Update Selected Event to use Default Speed.,Channel
+NDI,Category Header (not a function),
+NDICommand,Send specified command to NDI source,"Value = Command Value,Input"
+NDISelectSourceByIndex,Value = Index 0-100,"Value,Input"
+NDISelectSourceByName,Value = Name,"Value,Input"
+NDIStartRecording,,Input
+NDIStopRecording,,Input
+PTZ,Category Header (not a function),
+PTZCreateVirtualInput,Creates a PTZ Virtual Input with the current Position,Input
+PTZFocusAuto,,Input
+PTZFocusFar,Value = Speed 0-1,"Value,Input"
+PTZFocusManual,,Input
+PTZFocusNear,Value = Speed 0-1,"Value,Input"
+PTZFocusStop,,Input
+PTZHome,,Input
+PTZMoveDown,Value = Speed 0-1,"Value,Input"
+PTZMoveDownLeft,Value = Speed 0-1,"Value,Input"
+PTZMoveDownRight,Value = Speed 0-1,"Value,Input"
+PTZMoveLeft,Value = Speed 0-1,"Value,Input"
+PTZMoveRight,Value = Speed 0-1,"Value,Input"
+PTZMoveStop,Stop all PTZ movement,Input
+PTZMoveToVirtualInputPosition,Moves to the Position of the PTZ Virtual Input without selecting it into Preview,Input
+PTZMoveToVirtualInputPositionByIndex,Moves to the Position of the PTZ Virtual Input associated with this Input. Index is first Input found starting from 0,"Value = Index 0-100 Value,Input"
+PTZMoveUp,Value = Speed 0-1,"Value,Input"
+PTZMoveUpLeft,Value = Speed 0-1,"Value,Input"
+PTZMoveUpRight,Value = Speed 0-1,"Value,Input"
+PTZUpdateVirtualInput,Updates selected PTZ Virtual Input with current Position,Input
+PTZZoomIn,Value = Speed 0-1,"Value,Input"
+PTZZoomOut,Value = Speed 0-1,"Value,Input"
+PTZZoomStop,,Input
+Preset,Category Header (not a function),
+LastPreset,Load the last preset.,None
+OpenPreset,Load preset from the specified Filename.,Value = Filename Value
+SavePreset,Save preset to the specified Filename.,Value = Filename Value
+DataSources,Category Header (not a function),
+DataSourceAutoNextOff,"Name of the Data Source, Table Name (optional) eg 'Excel/CSV,Sheet1'","Value = Name,Table Value"
+DataSourceAutoNextOn,"Name of the Data Source, Table Name (optional) eg 'Excel/CSV,Sheet1'","Value = Name,Table Value"
+DataSourceAutoNextOnOff,"Name of the Data Source, Table Name (optional) eg 'Excel/CSV,Sheet1'","Value = Name,Table Value"
+DataSourceNextRow,"Name of the Data Source and Table Name (optional) eg 'Excel/CSV,Sheet1'","Value = Name,Table Value"
+DataSourcePause,Name of Data Source eg 'Excel/CSV',Value = Name Value
+DataSourcePlay,Name of Data Source eg 'Excel/CSV',Value = Name Value
+DataSourcePlayPause,Name of Data Source eg 'Excel/CSV',Value = Name Value
+DataSourcePreviousRow,"Name of the Data Source and Table Name (optional) eg 'Excel/CSV,Sheet1'","Value = Name,Table Value"
+DataSourceSelectRow,"Name of the Data Source, Table Name (optional) and Row Index starting from 0 eg 'Excel/CSV,Sheet1,5'","Value = Name,Table,Index Value"
+Browser,Category Header (not a function),
+BrowserBack,,Input
+BrowserForward,,Input
+BrowserKeyboardDisabled,,Input
+BrowserKeyboardEnabled,,Input
+BrowserMouseDisabled,,Input
+BrowserMouseEnabled,,Input
+BrowserNavigate,URL,"Value = URL Value,Input"
+BrowserReload,,Input
