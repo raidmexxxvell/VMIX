@@ -116,6 +116,47 @@ scoreboard.timeFieldName = null;
 
 function log(msg, err=false){ /* логирование отключено */ }
 
+function bumpEl(el){
+  if(!el) return;
+  el.classList.remove('bump');
+  // force reflow so animation reliably restarts
+  void el.offsetWidth;
+  el.classList.add('bump');
+}
+
+function clamp01(n){
+  if(Number.isNaN(n)) return 0;
+  if(n < 0) return 0;
+  if(n > 1) return 1;
+  return n;
+}
+
+function updateTimerProgress(){
+  if(!matchTimerEl) return;
+  const denom = Number(TIMER_DEFAULT_SECONDS) || 1;
+  const p = clamp01((Number(timerState.secondsRemaining) || 0) / denom);
+  matchTimerEl.style.setProperty('--timer-progress', String(p));
+}
+
+function tryHaptic(pattern = 10){
+  try{
+    if(window.navigator && typeof window.navigator.vibrate === 'function'){
+      window.navigator.vibrate(pattern);
+    }
+  }catch(e){ /* ignore */ }
+}
+
+function attachInteractionFeedback(){
+  // Haptic feedback on touch devices (CSS cannot trigger vibration)
+  document.addEventListener('pointerdown', (e)=>{
+    const btn = e.target && e.target.closest ? e.target.closest('button') : null;
+    if(!btn) return;
+    if(btn.disabled) return;
+    // keep it subtle
+    tryHaptic(10);
+  }, {passive:true});
+}
+
 const diagEl = document.getElementById('diag');
 const streamIndicatorEl = document.getElementById('streamIndicator');
 const streamIndicatorStatusEl = document.getElementById('streamIndicatorStatus');
@@ -395,8 +436,26 @@ function updateScoreboardUI(target){
   if(scoreboard.homeTeamNameField && editingTeam !== 'home'){ const el = findByName(scoreboard.homeTeamNameField); if(el && homeNameTextEl) homeNameTextEl.textContent = el.textContent || homeNameTextEl.textContent; }
   if(scoreboard.awayTeamNameField && editingTeam !== 'away'){ const el = findByName(scoreboard.awayTeamNameField); if(el && awayNameTextEl) awayNameTextEl.textContent = el.textContent || awayNameTextEl.textContent; }
   // scores
-  if(scoreboard.homeFieldName){ const el = findByName(scoreboard.homeFieldName); if(el) homeScoreEl.textContent = (el.textContent||'0'); }
-  if(scoreboard.awayFieldName){ const el = findByName(scoreboard.awayFieldName); if(el) awayScoreEl.textContent = (el.textContent||'0'); }
+  if(scoreboard.homeFieldName){
+    const el = findByName(scoreboard.homeFieldName);
+    if(el && homeScoreEl){
+      const next = (el.textContent||'0');
+      if(homeScoreEl.textContent !== next){
+        homeScoreEl.textContent = next;
+        bumpEl(homeScoreEl);
+      }
+    }
+  }
+  if(scoreboard.awayFieldName){
+    const el = findByName(scoreboard.awayFieldName);
+    if(el && awayScoreEl){
+      const next = (el.textContent||'0');
+      if(awayScoreEl.textContent !== next){
+        awayScoreEl.textContent = next;
+        bumpEl(awayScoreEl);
+      }
+    }
+  }
   // fouls
   if(scoreboard.homeFoulsField){ const el = findByName(scoreboard.homeFoulsField); if(el){
       const raw = (el.textContent||'').trim();
@@ -405,7 +464,11 @@ function updateScoreboardUI(target){
       else if(/^[-]+$/.test(raw)) uiNum = raw.length; // '-' ->1, '--'->2
       else if(/^\d+$/.test(raw)) uiNum = Number(raw);
       else uiNum = 0;
-      homeFoulsEl.textContent = String(uiNum);
+      const next = String(uiNum);
+      if(homeFoulsEl.textContent !== next){
+        homeFoulsEl.textContent = next;
+        bumpEl(homeFoulsEl);
+      }
     }
   }
   if(scoreboard.awayFoulsField){ const el = findByName(scoreboard.awayFoulsField); if(el){
@@ -415,12 +478,25 @@ function updateScoreboardUI(target){
       else if(/^[-]+$/.test(raw)) uiNum = raw.length;
       else if(/^\d+$/.test(raw)) uiNum = Number(raw);
       else uiNum = 0;
-      awayFoulsEl.textContent = String(uiNum);
+      const next = String(uiNum);
+      if(awayFoulsEl.textContent !== next){
+        awayFoulsEl.textContent = next;
+        bumpEl(awayFoulsEl);
+      }
     }
   }
   // time — не перезаписываем локально запущенный таймер чтобы избежать мерцания
   if(!timerState.intervalId){
-    if(scoreboard.timeFieldName){ const el = findByName(scoreboard.timeFieldName); if(el) matchTimerEl.textContent = (el.textContent||'00:00:00'); }
+    if(scoreboard.timeFieldName){
+      const el = findByName(scoreboard.timeFieldName);
+      if(el && matchTimerEl){
+        const next = (el.textContent||'00:00:00');
+        if(matchTimerEl.textContent !== next){
+          matchTimerEl.textContent = next;
+          bumpEl(matchTimerEl);
+        }
+      }
+    }
   }
   if(scoreboard.homeColorField){
     const colorEl = findColorByName(scoreboard.homeColorField);
@@ -707,6 +783,7 @@ function changeHomeFouls(delta){
   const cur = Number(homeFoulsEl.textContent)||0;
   const next = Math.max(0, cur+delta);
   homeFoulsEl.textContent = String(next);
+  bumpEl(homeFoulsEl);
   // Represent fouls as dashes in the text field: 1 -> '-', 2 -> '--', 0 -> ''
   const textVal = next > 0 ? '-'.repeat(next) : '';
   if(scoreboard.homeFoulsField) sendSetTextByName(scoreboard.inputNumber, scoreboard.homeFoulsField, textVal);
@@ -715,6 +792,7 @@ function changeAwayFouls(delta){
   const cur = Number(awayFoulsEl.textContent)||0;
   const next = Math.max(0, cur+delta);
   awayFoulsEl.textContent = String(next);
+  bumpEl(awayFoulsEl);
   const textVal = next > 0 ? '-'.repeat(next) : '';
   if(scoreboard.awayFoulsField) sendSetTextByName(scoreboard.inputNumber, scoreboard.awayFoulsField, textVal);
 }
@@ -745,6 +823,7 @@ function startTimer(){
       if(timerState.secondsRemaining <= 0){ stopTimer(); return; }
       timerState.secondsRemaining--;
       matchTimerEl.textContent = formatMMSS(timerState.secondsRemaining);
+      updateTimerProgress();
     }, 1000);
   } else {
     // fallback: update UI and PUSH SetText to vMix every `sendEvery` seconds
@@ -753,6 +832,7 @@ function startTimer(){
       timerState.secondsRemaining--;
       timerState.tickCounter++;
       matchTimerEl.textContent = formatMMSS(timerState.secondsRemaining);
+      updateTimerProgress();
       if(scoreboard.timeFieldName && timerState.sendEvery > 0 && (timerState.tickCounter % timerState.sendEvery === 0)){
         sendSetTextByName(scoreboard.inputNumber, scoreboard.timeFieldName, matchTimerEl.textContent);
       }
@@ -781,6 +861,8 @@ function stopTimer(){
 function resetTimer(){
   timerState.secondsRemaining = TIMER_DEFAULT_SECONDS;
   matchTimerEl.textContent = formatMMSS(timerState.secondsRemaining);
+  bumpEl(matchTimerEl);
+  updateTimerProgress();
   if(TIMER_INDEX && scoreboard.inputNumber){
     // set countdown to default value and stop (StopCountdown also resets in vMix)
     const hhmmss = formatHHMMSS(timerState.secondsRemaining);
@@ -793,7 +875,15 @@ function resetTimer(){
   log('Таймер сброшен');
 }
 
-function resetScoreAndFouls(){ homeScoreEl.textContent = '0'; awayScoreEl.textContent = '0'; homeFoulsEl.textContent='0'; awayFoulsEl.textContent='0';
+function resetScoreAndFouls(){
+  homeScoreEl.textContent = '0';
+  awayScoreEl.textContent = '0';
+  homeFoulsEl.textContent='0';
+  awayFoulsEl.textContent='0';
+  bumpEl(homeScoreEl);
+  bumpEl(awayScoreEl);
+  bumpEl(homeFoulsEl);
+  bumpEl(awayFoulsEl);
   if(scoreboard.homeFieldName) sendSetTextByName(scoreboard.inputNumber, scoreboard.homeFieldName, '0');
   if(scoreboard.awayFieldName) sendSetTextByName(scoreboard.inputNumber, scoreboard.awayFieldName, '0');
   // For fouls we send an empty string to vMix (no text) because fouls are represented as dashes '-','--' etc.
@@ -1068,11 +1158,17 @@ function attachAfterMatchControls(){
 }
 
 function changeHomeScore(delta){
-  const cur = Number(homeScoreEl.textContent)||0; const next = Math.max(0, cur+delta); homeScoreEl.textContent = String(next);
+  const cur = Number(homeScoreEl.textContent)||0;
+  const next = Math.max(0, cur+delta);
+  homeScoreEl.textContent = String(next);
+  bumpEl(homeScoreEl);
   return sendSetTextByName(scoreboard.inputNumber, scoreboard.homeFieldName, String(next)).catch(()=>{/* already logged */});
 }
 function changeAwayScore(delta){
-  const cur = Number(awayScoreEl.textContent)||0; const next = Math.max(0, cur+delta); awayScoreEl.textContent = String(next);
+  const cur = Number(awayScoreEl.textContent)||0;
+  const next = Math.max(0, cur+delta);
+  awayScoreEl.textContent = String(next);
+  bumpEl(awayScoreEl);
   return sendSetTextByName(scoreboard.inputNumber, scoreboard.awayFieldName, String(next)).catch(()=>{/* already logged */});
 }
 
@@ -1299,6 +1395,9 @@ async function refreshAll(){
       log('Табло не найдено — откройте XML и убедитесь, что есть GT input', true);
     }
   }catch(e){ /* ошибки уже залогированы */ }
+  finally{
+    try{ document.documentElement.classList.remove('loading'); }catch(e){ /* ignore */ }
+  }
 }
 
 // events
@@ -1323,8 +1422,11 @@ attachMainButton();
 attachReplayControls();
 attachStreamingControls();
 attachAfterMatchControls();
+attachInteractionFeedback();
 loadStreamingKeyFromStorage();
 setStreamingIndicator(false);
+updateTimerProgress();
+try{ document.documentElement.classList.add('loading'); }catch(e){ /* ignore */ }
 refreshAll();
 
 // Mobile menu toggle
