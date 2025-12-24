@@ -48,6 +48,7 @@ const goalMomentBtn = document.getElementById('goalMomentBtn');
 // foul button removed per request
 const betweenHalvesBtn = document.getElementById('betweenHalvesBtn');
 const varBtn = document.getElementById('varBtn');
+const varAfterMatchBtn = document.getElementById('varAfterMatchBtn');
 const recBtn = document.getElementById('recBtn');
 const clearEventsBtn = document.getElementById('clearEventsBtn');
 
@@ -1003,7 +1004,7 @@ function attachHalfSelect(){
 }
 
 function triggerReplayMark(){
-  const parts = [`Function=ReplayMarkInOutLive`, `Value=9`, `Input=${encodeURIComponent(REPLAY_INPUT_NUMBER)}`];
+  const parts = [`Function=ReplayMarkInOutLive`, `Value=7`, `Input=${encodeURIComponent(REPLAY_INPUT_NUMBER)}`];
   return sendCommandParts(parts).then(()=>{
     if(logEl) logEl.textContent = 'Replay: отметка добавлена';
   }).catch(()=>{
@@ -1042,10 +1043,29 @@ function triggerVarMoment(){
   });
 }
 
+// VAR for After Match: same behavior but save 20-second moment
+function triggerVarAfterMatch(){
+  // сохраняем последние 5 минут (300 секунд)
+  const markParts = [`Function=ReplayMarkInOutLive`, `Value=300`, `Input=${encodeURIComponent(REPLAY_INPUT_NUMBER)}`];
+  sendCommandParts(markParts).then(()=>{
+    if(logEl) logEl.textContent = 'КЛИП: сохранён 5-минутный клип';
+    setTimeout(()=>{
+      const moveParts = [`Function=ReplayMoveLastEvent`, `Value=4`];
+      sendCommandParts(moveParts).then(()=>{
+        if(logEl) logEl.textContent = 'КЛИП: момент перемещён в лист 4';
+      }).catch(()=>{
+        if(logEl) logEl.textContent = 'КЛИП: не удалось переместить момент в лист 4';
+      });
+    }, 1000);
+  }).catch(()=>{
+    if(logEl) logEl.textContent = 'КЛИП: не удалось сохранить момент';
+  });
+}
+
 
 function triggerGoalMoment(){
   // Отправляем пометку повтора (как для кнопки Отметить)
-  const markParts = [`Function=ReplayMarkInOutLive`, `Value=9`, `Input=${encodeURIComponent(REPLAY_INPUT_NUMBER)}`];
+  const markParts = [`Function=ReplayMarkInOutLive`, `Value=8`, `Input=${encodeURIComponent(REPLAY_INPUT_NUMBER)}`];
   sendCommandParts(markParts).then(()=>{
     if(logEl) logEl.textContent = 'Replay A отметка добавлена';
   }).catch(()=>{
@@ -1092,6 +1112,18 @@ async function playBetweenHalvesReplays(){
           penaltyVisible = false; if(penaltyBtn) penaltyBtn.classList.remove('active');
           bigTabVisible = false; if(bigTabBtn) bigTabBtn.classList.remove('active');
           if(logEl) logEl.textContent = 'ПОВТОРЫ: overlay4 показан input 5';
+          // Через 5 секунд скрываем overlay4 (отправляем Input=0)
+          setTimeout(()=>{
+            setOverlay4Input('5').then(hideOk=>{
+              if(hideOk){
+                lowerTabVisible = false;
+                if(lowerTabBtn) lowerTabBtn.classList.remove('active');
+                penaltyVisible = false; if(penaltyBtn) penaltyBtn.classList.remove('active');
+                bigTabVisible = false; if(bigTabBtn) bigTabBtn.classList.remove('active');
+                if(logEl) logEl.textContent = 'ПОВТОРЫ: overlay4 скрыт (через 5с)';
+              }
+            }).catch(()=>{/* ignore hide error */});
+          }, 5000);
         } else {
           if(logEl) logEl.textContent = 'ПОВТОРЫ: не удалось показать overlay4 input 5';
         }
@@ -1149,6 +1181,7 @@ async function clearAllEventsList1(){
 
 function attachAfterMatchControls(){
   if(betweenHalvesBtn) betweenHalvesBtn.addEventListener('click', ()=> playBetweenHalvesReplays());
+  if(varAfterMatchBtn) varAfterMatchBtn.addEventListener('click', ()=> triggerVarAfterMatch());
   if(clearEventsBtn) clearEventsBtn.addEventListener('click', ()=>{
     try{
       if(confirm && !confirm('Удалить все события в листе 1?')) return;
